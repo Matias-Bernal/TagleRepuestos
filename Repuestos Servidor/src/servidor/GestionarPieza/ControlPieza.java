@@ -32,7 +32,6 @@ public class ControlPieza extends UnicastRemoteObject implements IControlPieza {
 
 	public ControlPieza() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

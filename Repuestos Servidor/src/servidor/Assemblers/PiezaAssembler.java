@@ -32,7 +32,6 @@ public class PiezaAssembler {
 		piezaDTO.setId(pieza.getId());
 		piezaDTO.setNumero_pieza(pieza.getNumero_pieza());
 		piezaDTO.setDescripcion(pieza.getDescripcion());
-		//TODO completar
 		return piezaDTO;
 	}
 
@@ -41,7 +40,6 @@ public class PiezaAssembler {
 		pieza.setId(piezaDTO.getId());
 		pieza.setNumero_pieza(piezaDTO.getNumero_pieza());
 		pieza.setDescripcion(piezaDTO.getDescripcion());
-		//TODO completar
 		return pieza;
 	}
 
@@ -50,7 +48,6 @@ public class PiezaAssembler {
 		pieza.setId(piezaDTO.getId());
 		pieza.setNumero_pieza(piezaDTO.getNumero_pieza());
 		pieza.setDescripcion(piezaDTO.getDescripcion());
-		//TODO completar
 		return pieza;
 	}
 

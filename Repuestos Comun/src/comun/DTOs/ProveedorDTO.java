@@ -14,7 +14,9 @@
  *********************************************************/
 package comun.DTOs;
 
-public class ProveedorDTO {
+import java.io.Serializable;
+
+public class ProveedorDTO implements Serializable{
 
 	protected static final long serialVersionUID = 1L;
 	protected Long id;
@@ -22,21 +24,23 @@ public class ProveedorDTO {
 	
 	public ProveedorDTO(){}
 			
-	public ProveedorDTO(String nombre) {
+	public ProveedorDTO(Long id, String nombre) {
+		super();
+		this.id = id;
 		this.nombre = nombre;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

@@ -18,6 +18,8 @@ import java.rmi.Remote;
 import java.util.Vector;
 
 import comun.DTOs.ReclamoDTO;
+import comun.DTOs.SolicitudDTO;
+import comun.DTOs.UsuarioRepuestoDTO;
 
 public interface IControlReclamo extends Remote{
 	
@@ -26,10 +28,11 @@ public interface IControlReclamo extends Remote{
 	public void modificarReclamo(Long id,ReclamoDTO modificado)throws Exception;
 	
 	public Vector<ReclamoDTO> obtenerReclamos()throws Exception;
+	public Vector<ReclamoDTO> obtenerReclamosSolicitud(SolicitudDTO solicitud)throws Exception;
+	public Vector<ReclamoDTO> obtenerReclamosUsuario(UsuarioRepuestoDTO usuario_repuesto)throws Exception;
 	
 	public boolean existeReclamo(Long id) throws Exception;
 	
 	public ReclamoDTO buscarReclamo(Long id) throws Exception;
-
 
 }

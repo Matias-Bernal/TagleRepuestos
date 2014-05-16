@@ -21,23 +21,20 @@ public class Proveedor {
 	
 	public Proveedor() {}
 	
-	public Proveedor(String nombre) {
-		id = new Long(0);
+	public Proveedor(Long id, String nombre) {
+		this.id = id;
 		this.nombre = nombre;
 	}
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

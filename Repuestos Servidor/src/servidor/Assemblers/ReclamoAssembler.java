@@ -16,6 +16,7 @@ package servidor.Assemblers;
 
 import servidor.Persistencia.AccesoBD;
 import servidor.Persistencia.Dominio.Reclamo;
+
 import comun.DTOs.ReclamoDTO;
 
 public class ReclamoAssembler {
@@ -31,7 +32,12 @@ public class ReclamoAssembler {
 		reclamoDTO.setId(reclamo.getId());
 		reclamoDTO.setFecha_reclamo(reclamo.getFecha_reclamo());
 		reclamoDTO.setDescripcion(reclamo.getDescripcion());
-		//TODO agregar la reclacion con la solicitud
+		UsuarioRepuestoAssembler usuarioAssemb = new UsuarioRepuestoAssembler(accesoBD);
+		if(reclamo.getUsuario_repuesto()!=null)
+			reclamoDTO.setUsuario_repuesto(usuarioAssemb.getUsuarioRepuestoDTO(reclamo.getUsuario_repuesto()));
+		SolicitudAssembler solicitudAssemb = new SolicitudAssembler(accesoBD);
+		if(reclamo.getUsuario_repuesto()!=null)
+			reclamoDTO.setSolicitud(solicitudAssemb.getSolicitudDTO(reclamo.getSolicitud()));
 		return reclamoDTO;
 	}
 
@@ -40,7 +46,12 @@ public class ReclamoAssembler {
 		reclamo.setId(reclamoDTO.getId());
 		reclamo.setFecha_reclamo(reclamoDTO.getFecha_reclamo());
 		reclamo.setDescripcion(reclamoDTO.getDescripcion());
-		//TODO agregar la reclacion con la solicitud
+		UsuarioRepuestoAssembler usuarioAssemb = new UsuarioRepuestoAssembler(accesoBD);
+		if(reclamoDTO.getUsuario_repuesto()!=null)
+			reclamo.setUsuario_repuesto(usuarioAssemb.getUsuarioRepuesto(reclamoDTO.getUsuario_repuesto()));
+		SolicitudAssembler solicitudAssemb = new SolicitudAssembler(accesoBD);
+		if(reclamoDTO.getUsuario_repuesto()!=null)
+			reclamo.setSolicitud(solicitudAssemb.getSolicitud(reclamoDTO.getSolicitud()));
 		return reclamo;
 	}
 	
@@ -49,7 +60,12 @@ public class ReclamoAssembler {
 		reclamo.setId(reclamoDTO.getId());
 		reclamo.setFecha_reclamo(reclamoDTO.getFecha_reclamo());
 		reclamo.setDescripcion(reclamoDTO.getDescripcion());
-		//TODO agregar la reclacion con la solicitud
+		UsuarioRepuestoAssembler usuarioAssemb = new UsuarioRepuestoAssembler(accesoBD);
+		if(reclamoDTO.getUsuario_repuesto()!=null)
+			reclamo.setUsuario_repuesto(usuarioAssemb.getUsuarioRepuesto(reclamoDTO.getUsuario_repuesto()));
+		SolicitudAssembler solicitudAssemb = new SolicitudAssembler(accesoBD);
+		if(reclamoDTO.getUsuario_repuesto()!=null)
+			reclamo.setSolicitud(solicitudAssemb.getSolicitud(reclamoDTO.getSolicitud()));
 		return reclamo;
 	}
 

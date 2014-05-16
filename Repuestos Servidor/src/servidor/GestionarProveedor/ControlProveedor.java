@@ -32,7 +32,6 @@ public class ControlProveedor extends UnicastRemoteObject implements IControlPro
 
 	public ControlProveedor() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

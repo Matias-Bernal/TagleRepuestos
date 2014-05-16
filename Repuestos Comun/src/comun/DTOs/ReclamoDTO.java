@@ -14,21 +14,27 @@
  *********************************************************/
 package comun.DTOs;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReclamoDTO {
+public class ReclamoDTO implements Serializable{
 
 	protected static final long serialVersionUID = 1L;
 	protected Long id;
 	protected Date fecha_reclamo;
 	protected String descripcion;
+	protected SolicitudDTO solicitud;
+	protected UsuarioRepuestoDTO usuario_repuesto;
 	
 	public ReclamoDTO(){}
 			
-	public ReclamoDTO(Date fecha_reclamo, String descripcion, Long id) {
+	public ReclamoDTO(Long id, Date fecha_reclamo, String descripcion, SolicitudDTO solicitud, UsuarioRepuestoDTO usuario_repuesto) {
+		super();
+		this.id = id;
 		this.fecha_reclamo = fecha_reclamo;
 		this.descripcion = descripcion;
-		this.id = id;
+		this.solicitud = solicitud;
+		this.usuario_repuesto = usuario_repuesto;
 	}
 	
 	public Date getFecha_reclamo() {
@@ -48,5 +54,17 @@ public class ReclamoDTO {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public SolicitudDTO getSolicitud() {
+		return solicitud;
+	}
+	public void setSolicitud(SolicitudDTO solicitud) {
+		this.solicitud = solicitud;
+	}
+	public UsuarioRepuestoDTO getUsuario_repuesto() {
+		return usuario_repuesto;
+	}
+	public void setUsuario_repuesto(UsuarioRepuestoDTO usuario_repuesto) {
+		this.usuario_repuesto = usuario_repuesto;
 	}
 }

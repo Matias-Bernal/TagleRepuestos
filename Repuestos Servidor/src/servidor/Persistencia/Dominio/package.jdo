@@ -4,6 +4,28 @@
     "http://java.sun.com/dtd/jdo_2_0.dtd">
 <jdo>
 	<package name="servidor.Persistencia.Dominio">
+		<class name="Alternativo" persistence-capable-superclass = "Proveedor">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Carroceria" persistence-capable-superclass = "Taller">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Fabrica" persistence-capable-superclass = "Proveedor">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Garantia" persistence-capable-superclass = "Solicitante">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Mayorista" persistence-capable-superclass = "Solicitante">
+			  <inheritance strategy="new-table"/>
+		</class>		
+		<class name="Mecanico" persistence-capable-superclass = "Taller">
+			  <inheritance strategy="new-table"/>
+		</class>	
+		<class name="Mostrador" persistence-capable-superclass = "Solicitante">
+			  <inheritance strategy="new-table"/>
+			<field name="telefono" persistence-modifier="persistent"/>
+		</class>
 		<class name="Pieza">		
 			<field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
 			<field name="numero_pieza" persistence-modifier="persistent"/>
@@ -17,8 +39,53 @@
 			<field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
 			<field name="fecha_reclamo" persistence-modifier="persistent"/>
 			<field name="descripcion" persistence-modifier="persistent"/>
+			<field name="solicitud" persistence-modifier="persistent" >
+                <foreign-key name="fk_solicitud_0" delete-action="cascade"/>
+            </field>
+			<field name="usuario_repuesto" persistence-modifier="persistent" >
+                <foreign-key name="fk_usua_1" delete-action="cascade"/>
+            </field>
 		</class>
-		<class name="Usuario">
+		<class name="Seguro" persistence-capable-superclass = "Solicitante">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Solicitante">
+			<field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>	
+			<field name="nombre" persistence-modifier="persistent"/>
+		</class>
+		<class name="Solicitud">
+			<field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+			<field name="fecha_solicitud_solicitante" persistence-modifier="persistent"/>
+			<field name="fecha_solicitud_proveedor" persistence-modifier="persistent"/>
+			<field name="fecha_recepcion_proveedor" persistence-modifier="persistent"/>
+			<field name="stock_propio" persistence-modifier="persistent"/>
+			<field name="stock_fabrica" persistence-modifier="persistent"/>
+			<field name="cantidad" persistence-modifier="persistent"/>
+			<field name="orden_trabajo" persistence-modifier="persistent"/>
+			<field name="dominio" persistence-modifier="persistent"/>
+			<field name="numero_pedido" persistence-modifier="persistent"/>
+			<field name="estado" persistence-modifier="persistent"/>
+			<field name="cargo" persistence-modifier="persistent"/>
+			<field name="solicitante" persistence-modifier="persistent" >
+                <foreign-key name="fk_solicitante_2" delete-action="cascade"/>
+            </field>
+            <field name="usuario_repuesto" persistence-modifier="persistent" >
+                <foreign-key name="fk_usuario_repuesto_3" delete-action="cascade"/>
+            </field>
+            <field name="pieza" persistence-modifier="persistent" >
+                <foreign-key name="fk_pieza_4" delete-action="cascade"/>
+            </field>
+            <field name="proveedor" persistence-modifier="persistent" >
+                <foreign-key name="fk_proveedor_5" delete-action="cascade"/>
+            </field>
+		</class>
+		<class name="Sucursal" persistence-capable-superclass = "Proveedor">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="Taller" persistence-capable-superclass = "Solicitante">
+			  <inheritance strategy="new-table"/>
+		</class>
+		<class name="UsuarioRepuesto">
 			<field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
 			<field name="nombre_usuario" persistence-modifier="persistent"/>
 			<field name="clave" persistence-modifier="persistent"/>

@@ -16,15 +16,18 @@ package servidor.GestionarReclamo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Collection;
 import java.util.Vector;
 
 import servidor.Assemblers.ReclamoAssembler;
+import servidor.Assemblers.SolicitudAssembler;
+import servidor.Assemblers.UsuarioRepuestoAssembler;
 import servidor.Persistencia.AccesoBD;
 import servidor.Persistencia.Dominio.Reclamo;
 import comun.DTOs.ReclamoDTO;
+import comun.DTOs.SolicitudDTO;
+import comun.DTOs.UsuarioRepuestoDTO;
 import comun.GestionarReclamo.IControlReclamo;
-
-
 
 public class ControlReclamo extends UnicastRemoteObject implements
 		IControlReclamo {
@@ -76,7 +79,11 @@ public class ControlReclamo extends UnicastRemoteObject implements
 			
 			reclamo.setDescripcion(modificado.getDescripcion());
 			reclamo.setFecha_reclamo(modificado.getFecha_reclamo());
-	
+			SolicitudAssembler solicitudAssem = new SolicitudAssembler(accesoBD);
+			reclamo.setSolicitud(solicitudAssem.getSolicitud(modificado.getSolicitud()));
+			UsuarioRepuestoAssembler usuarioAssemb = new UsuarioRepuestoAssembler(accesoBD);
+			reclamo.setUsuario_repuesto(usuarioAssemb.getUsuarioRepuesto(modificado.getUsuario_repuesto()));
+			
 			accesoBD.concretarTransaccion();
 		} catch (Exception e) {
 			accesoBD.rollbackTransaccion();
@@ -99,6 +106,11 @@ public class ControlReclamo extends UnicastRemoteObject implements
 				reclamoDTO.setDescripcion(reclamos.elementAt(i).getDescripcion());
 				reclamoDTO.setFecha_reclamo(reclamos.elementAt(i).getFecha_reclamo());
 				
+				SolicitudAssembler solicitudAssem = new SolicitudAssembler(accesoBD);
+				reclamoDTO.setSolicitud(solicitudAssem.getSolicitudDTO(reclamos.elementAt(i).getSolicitud()));
+				UsuarioRepuestoAssembler usuarioAssemb = new UsuarioRepuestoAssembler(accesoBD);
+				reclamoDTO.setUsuario_repuesto(usuarioAssemb.getUsuarioRepuestoDTO(reclamos.elementAt(i).getUsuario_repuesto()));
+				
 				reclamosDTO.add(reclamoDTO);
 			}
 			accesoBD.concretarTransaccion();
@@ -108,6 +120,43 @@ public class ControlReclamo extends UnicastRemoteObject implements
 		return reclamosDTO;
 	}
 
+	@Override
+	public Vector<ReclamoDTO> obtenerReclamosSolicitud(SolicitudDTO solicitud) throws Exception {
+		AccesoBD accesoBD = new AccesoBD();
+		Vector<ReclamoDTO> reclamosDTO = new Vector<ReclamoDTO>();
+		try {
+			accesoBD.iniciarTransaccion();
+			String filtro = "solicitud.id == "+solicitud.getId();
+			Collection movCol = accesoBD.buscarPorFiltro(Reclamo.class, filtro);
+			ReclamoAssembler reclamoAssem = new ReclamoAssembler(accesoBD);
+			for (int i = 0; i < movCol.size(); i++) {
+				reclamosDTO.add(reclamoAssem.getReclamoDTO((Reclamo)(movCol.toArray()[i])));
+			}
+			accesoBD.concretarTransaccion();
+		} catch (Exception e) {
+			accesoBD.rollbackTransaccion();
+		}
+		return reclamosDTO;
+	}
+
+	@Override
+	public Vector<ReclamoDTO> obtenerReclamosUsuario(UsuarioRepuestoDTO usuario_repuesto) throws Exception {
+		AccesoBD accesoBD = new AccesoBD();
+		Vector<ReclamoDTO> reclamosDTO = new Vector<ReclamoDTO>();
+		try {
+			accesoBD.iniciarTransaccion();
+			String filtro = "usuario_repuesto.id == "+usuario_repuesto.getId();
+			Collection movCol = accesoBD.buscarPorFiltro(Reclamo.class, filtro);
+			ReclamoAssembler reclamoAssem = new ReclamoAssembler(accesoBD);
+			for (int i = 0; i < movCol.size(); i++) {
+				reclamosDTO.add(reclamoAssem.getReclamoDTO((Reclamo)(movCol.toArray()[i])));
+			}
+			accesoBD.concretarTransaccion();
+		} catch (Exception e) {
+			accesoBD.rollbackTransaccion();
+		}
+		return reclamosDTO;
+	}
 	
 	@Override
 	public boolean existeReclamo(Long id) throws Exception {

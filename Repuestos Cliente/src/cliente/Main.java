@@ -13,7 +13,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *********************************************************/
 package cliente;
-public class Main {  
+public class Main extends Thread {  
   
     public static void main(String[] args) throws Exception {
     	String conf = "";
@@ -22,4 +22,13 @@ public class Main {
         }
         MediadorPrincipal mp = new MediadorPrincipal();
     }
+    
+	@Override
+	public void run (){
+		try {
+			MediadorPrincipal mp = new MediadorPrincipal();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

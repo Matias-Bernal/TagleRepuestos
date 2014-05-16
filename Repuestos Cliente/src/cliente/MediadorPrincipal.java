@@ -14,10 +14,99 @@
  *********************************************************/
 package cliente;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+import cliente.GestionarUsuario.MediadorUsuario;
+import comun.RootAndIp;
+import comun.DTOs.UsuarioRepuestoDTO;
+import comun.GestionarUsuarioRepuesto.IControlUsuarioRepuesto;
+
 public class MediadorPrincipal{
 	
+	protected GUIMenu_Principal gui_menu_Principal;
+	protected GUILogin gui_login; 
+	protected UsuarioRepuestoDTO usuario_repuesto;
+	private MediadorUsuario mediadorUsuario;
+	
 	public MediadorPrincipal() throws Exception{
+		gui_login = new GUILogin(this);
+		gui_login.setVisible(true);
+	}
+	
+	public boolean acceso(String usuario, String contrasenia) throws Exception {
+		boolean result = false;
+		try{
+			IControlUsuarioRepuesto iControlUsuarioRepuesto = MediadorAccionesIniciarPrograma.getControlUsuariosRepuesto();
+			if (iControlUsuarioRepuesto.login(usuario, contrasenia)){
+				UsuarioRepuestoDTO usuarioRepuestoDTO = iControlUsuarioRepuesto.buscarUsuario(usuario);
+				setUsuario_repuesto(usuarioRepuestoDTO);
+				gui_menu_Principal = new GUIMenu_Principal(this);
+				gui_menu_Principal.setVisible(true);
+				result = true;
+			}else{
+				JOptionPane.showMessageDialog(gui_login,"Usuario o contraseña invalidos.","Error",JOptionPane.ERROR_MESSAGE);
+			}
+		}catch (Exception e){
+			JOptionPane.showMessageDialog(gui_login,"Error de conexion.","Error",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return result;
+	}
+	
+	public void reiniciar(){
+		gui_menu_Principal.dispose();
+		gui_login = new GUILogin(this);
+		gui_login.setVisible(true);
+	}
 
+	public void salir() {
+		gui_menu_Principal.dispose();
+		gui_login.dispose();
+		System.exit(0);
+	}
+
+	public UsuarioRepuestoDTO getUsuario_repuesto() {
+		return usuario_repuesto;
+	}
+
+	public void setUsuario_repuesto(UsuarioRepuestoDTO usuario_repuesto) {
+		this.usuario_repuesto = usuario_repuesto;
+	}
+	// Usuarios //
+	
+	public void altaUsuario(){
+		mediadorUsuario = new MediadorUsuario(this);
+		mediadorUsuario.altaUsuario();
+	}
+
+	public void gestionarUsuario(){
+		mediadorUsuario = new MediadorUsuario(this);
+		mediadorUsuario.gestioUsuario();
+	}
+	public void altaUsuario(String nombre_usuario, String email, String tipo){
+		mediadorUsuario = new MediadorUsuario(this);
+		mediadorUsuario.altaUsuario(nombre_usuario, email, tipo);
+	}
+	
+	// Ayuda //
+	public void ayuda(){
+		File manual = new File(RootAndIp.getPath_manual()+"ManualRepuestos.pdf");
+		if(manual.exists()){
+			try {
+				Desktop.getDesktop().open(manual);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null,"Error al cargar el manual.","Error",JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+		}else{
+			JOptionPane.showMessageDialog(null,"No hay manual actualizar.","Error",JOptionPane.INFORMATION_MESSAGE);
+
+		}
 	}
 
 }

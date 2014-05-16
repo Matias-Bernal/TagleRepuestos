@@ -14,7 +14,9 @@
  *********************************************************/
 package comun.DTOs;
 
-public class PiezaDTO {
+import java.io.Serializable;
+
+public class PiezaDTO implements Serializable{
 
 	protected static final long serialVersionUID = 1L;
 	protected Long id;
@@ -23,12 +25,19 @@ public class PiezaDTO {
 
 	public PiezaDTO(){}
 			
-	public PiezaDTO(String numero_pieza, String descripcion, Long id) {
+	public PiezaDTO(Long id, String numero_pieza, String descripcion) {
+		super();
+		this.id = id;
 		this.numero_pieza = numero_pieza;
 		this.descripcion = descripcion;
-		this.id = id;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getNumero_pieza() {
 		return numero_pieza;
 	}
@@ -40,12 +49,6 @@ public class PiezaDTO {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 }

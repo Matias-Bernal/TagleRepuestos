@@ -14,16 +14,70 @@
  *********************************************************/
 package servidor;
 
+import servidor.GestionarAlternativo.ControlAlternativo;
+import servidor.GestionarCarroceria.ControlCarroceria;
+import servidor.GestionarFabrica.ControlFabrica;
+import servidor.GestionarGarantia.ControlGarantia;
+import servidor.GestionarMayorista.ControlMayorista;
+import servidor.GestionarMecanico.ControlMecanico;
+import servidor.GestionarMostrador.ControlMostrador;
+import servidor.GestionarPieza.ControlPieza;
+import servidor.GestionarProveedor.ControlProveedor;
+import servidor.GestionarReclamo.ControlReclamo;
+import servidor.GestionarSeguro.ControlSeguro;
+import servidor.GestionarSolicitante.ControlSolicitante;
+import servidor.GestionarSolicitud.ControlSolicitud;
+import servidor.GestionarSucursal.ControlSucursal;
+import servidor.GestionarTaller.ControlTaller;
+import servidor.GestionarUsuarioRepuesto.ControlUsuarioRepuesto;
+import comun.DTOs.UsuarioRepuestoDTO;
+
 public class Main {  
   
 	public static void main(String[] args) {
 		try {
-			
+			ControlAlternativo controlAlternativo = new ControlAlternativo();
+			ControlCarroceria controlCarroceria = new ControlCarroceria();
+			ControlFabrica controlFabrica = new ControlFabrica();
+			ControlGarantia controlGarantia = new ControlGarantia();
+			ControlMayorista controlMayorista = new ControlMayorista();
+			ControlMecanico controlMecanico = new ControlMecanico();
+			ControlMostrador controlMostrador = new ControlMostrador();
+			ControlPieza controlPieza = new ControlPieza();
+			ControlProveedor controlProveedor = new ControlProveedor();
+			ControlReclamo controlReclamo = new ControlReclamo();
+			ControlSeguro controlSeguro = new ControlSeguro();
+			ControlSolicitud controlSolicitud = new ControlSolicitud();
+			ControlSolicitante controlSolicitante = new ControlSolicitante();
+			ControlSucursal controlSucursal = new ControlSucursal();
+			ControlTaller controlTaller = new ControlTaller();
+			ControlUsuarioRepuesto controlUsuarioRepuesto = new ControlUsuarioRepuesto();
+
 			Servidor servidor = new Servidor();
 			SingletonConexion c = new SingletonConexion();
 			
-			//servidor.setControlTest(controlTest);
-			//cargar en servidor todos los controles
+			if (!controlUsuarioRepuesto.existeUsuario("Admin")){
+				UsuarioRepuestoDTO admin = new UsuarioRepuestoDTO("Admin","it10" , "contacto@it10coop.com.ar", "Administrativo");
+				controlUsuarioRepuesto.agregarUsuario(admin);
+				System.out.println("Agregado el usuario Admin");
+			}
+			servidor.setControlAlternativo(controlAlternativo);
+			servidor.setControlCarroceria(controlCarroceria);
+			servidor.setControlFabrica(controlFabrica);
+			servidor.setControlGarantia(controlGarantia);
+			servidor.setControlMayorista(controlMayorista);
+			servidor.setControlMecanico(controlMecanico);
+			servidor.setControlMostrador(controlMostrador);
+			servidor.setControlPieza(controlPieza);
+			servidor.setControlProveedor(controlProveedor);
+			servidor.setControlReclamo(controlReclamo);
+			servidor.setControlSeguro(controlSeguro);
+			servidor.setControlSolicitud(controlSolicitud);
+			servidor.setControlSolicitante(controlSolicitante);
+			servidor.setControlSucursal(controlSucursal);
+			servidor.setControlTaller(controlTaller);
+			servidor.setControlUsuarioRepuesto(controlUsuarioRepuesto);
+			
 			servidor.iniciar();
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -14,19 +14,184 @@
  *********************************************************/
 package cliente;
 
+import comun.GestionarAlternativo.IControlAlternativo;
+import comun.GestionarCarroceria.IControlCarroceria;
+import comun.GestionarFabrica.IControlFabrica;
+import comun.GestionarGarantia.IControlGarantia;
+import comun.GestionarMayorista.IControlMayorista;
+import comun.GestionarMecanico.IControlMecanico;
+import comun.GestionarMostrador.IControlMostrador;
 import comun.GestionarPieza.IControlPieza;
+import comun.GestionarProveedor.IControlProveedor;
+import comun.GestionarReclamo.IControlReclamo;
+import comun.GestionarSeguro.IControlSeguro;
+import comun.GestionarSolicitante.IControlSolicitante;
+import comun.GestionarSolicitud.IControlSolicitud;
+import comun.GestionarSucursal.IControlSucursal;
+import comun.GestionarTaller.IControlTaller;
+import comun.GestionarUsuarioRepuesto.IControlUsuarioRepuesto;
 
 public final class MediadorAccionesIniciarPrograma{
+	
+	public static IControlAlternativo getControlAlternativo(){
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlAlternativo. Constructor");
+		}
+		return clienteConexion.getControlAlternativo();
+	}
+	
+	public static IControlCarroceria getControlCarroceria() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlCarroceria. Constructor");
+		}
+		return clienteConexion.getControlCarroceria();
+	}
+	
+	public static IControlFabrica getControlFabrica() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlFabrica. Constructor");
+		}
+		return clienteConexion.getControlFabrica();
+	}
+	
+	public static IControlGarantia getControlGarantia() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlGarantia. Constructor");
+		}
+		return clienteConexion.getControlGarantia();
+	}
+	
+	public static IControlMayorista getControlMayorista() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlMayorista. Constructor");
+		}
+		return clienteConexion.getControlMayorista();
+	}
+	
+	public static IControlMecanico getControlMecanico() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlMecanico. Constructor");
+		}
+		return clienteConexion.getControlMecanico();
+	}
 
+	public static IControlMostrador getControlMostrador() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlMostrador. Constructor");
+		}
+		return clienteConexion.getControlMostrador();
+	}
+	
 	public static IControlPieza getControlPieza() {
 		ClienteConection clienteConexion = new ClienteConection();
 		try{
 			clienteConexion.iniciar();
 		}catch(Exception ex){
-			ex.printStackTrace();
-			System.out.println("Error en getContolTest");
+			System.out.println("Error en getControlPieza. Constructor");
 		}
 		return clienteConexion.getControlPieza();
 	}
-		
+	
+	public static IControlProveedor getControlProveedor(){
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlProveedor. Constructor");
+		}
+		return clienteConexion.getControlProveedor();
+	}
+
+	public static IControlReclamo getControlReclamo() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlReclamo. Constructor");
+		}
+		return clienteConexion.getControlReclamo();
+	}
+	
+	public static IControlSeguro getControlSeguro() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlSeguro. Constructor");
+		}
+		return clienteConexion.getControlSeguro();
+	}
+	
+	public static IControlSolicitante getControlSolicitante() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlSolicitante. Constructor");
+		}
+		return clienteConexion.getControlSolicitante();
+	}
+	
+	public static IControlSolicitud getControlSolicitud() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlSolicitud. Constructor");
+		}
+		return clienteConexion.getControlSolicitud();
+	}
+	
+	public static IControlSucursal getControlSucursal() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlSucursal. Constructor");
+		}
+		return clienteConexion.getControlSucursal();
+	}
+	
+	public static IControlTaller getControlTaller() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			System.out.println("Error en getControlTaller. Constructor");
+		}
+		return clienteConexion.getControlTaller();
+	}
+	
+	public static IControlUsuarioRepuesto getControlUsuariosRepuesto() {
+		ClienteConection clienteConexion = new ClienteConection();
+		try{
+			clienteConexion.iniciar();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			System.out.println("Error en getControlUsuariosRepuesto. Constructor");
+		}
+		return clienteConexion.getControlUsuarioRepuesto();
+	}
+
 }
